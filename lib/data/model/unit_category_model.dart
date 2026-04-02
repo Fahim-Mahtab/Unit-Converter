@@ -9,14 +9,20 @@ class UnitCategoryModel extends UnitCategory {
     required super.units,
   });
 
-  //length meter ,kilometer,centimeter,millimeter,foot,inch
-  // weight gram,kilogram,pound,ounce
-  // temperature celsius,fahrenheit,kelvin
+
   static const List<UnitCategoryModel> allCategories = [
     UnitCategoryModel(
       name: 'Length',
       iconData: Icons.straighten,
-      units: ['Meter', 'Kilometer', 'Centimeter', 'Millimeter', 'Foot', 'Inch'],
+      units: [
+        'Meter',
+        'Kilometer',
+        'Mile',
+        'Centimeter',
+        'Millimeter',
+        'Foot',
+        'Inch',
+      ],
     ),
     UnitCategoryModel(
       name: 'Weight',
@@ -39,13 +45,13 @@ class UnitCategoryModel extends UnitCategory {
 
     switch (categoryName) {
       case 'Length':
-        return 0.00; //_convertLength(value, fromUnit, toUnit);
+        return _convertLength(value, fromUnit, toUnit);
       case 'Weight':
-        return 0.00; //_convertWeight(value, fromUnit, toUnit);
+        return _convertWeight(value, fromUnit, toUnit);
       case 'Temperature':
-        return 0.00; //_convertTemperature(value, fromUnit, toUnit);
+        return _convertTemperature(value, fromUnit, toUnit);
       default:
-        return value;
+        throw ArgumentError('Invalid category: $categoryName');
     }
   }
 
@@ -68,8 +74,10 @@ class UnitCategoryModel extends UnitCategory {
         return value * 0.0254;
       case 'Centimeter':
         return value * 0.01;
+      case 'Millimeter':
+        return value * 0.001;
       default:
-        return value;
+        throw ArgumentError('Unsupported length unit: $unit');
     }
   }
 
@@ -87,8 +95,10 @@ class UnitCategoryModel extends UnitCategory {
         return meters / 0.0254;
       case 'Centimeter':
         return meters / 0.01;
+      case 'Millimeter':
+        return meters / 0.001;
       default:
-        return meters;
+        throw ArgumentError('Unsupported length unit: $unit');
     }
   }
 
@@ -105,7 +115,7 @@ class UnitCategoryModel extends UnitCategory {
         celsius = value - 273.15;
         break;
       default:
-        celsius = value;
+        throw ArgumentError('Unsupported temperature unit: $from');
     }
 
     switch (to) {
@@ -116,7 +126,7 @@ class UnitCategoryModel extends UnitCategory {
       case 'Kelvin':
         return celsius + 273.15;
       default:
-        return celsius;
+        throw ArgumentError('Unsupported temperature unit: $to');
     }
   }
 
@@ -136,7 +146,7 @@ class UnitCategoryModel extends UnitCategory {
       case 'Ounce':
         return value * 0.0283495;
       default:
-        return value;
+        throw ArgumentError('Unsupported weight unit: $unit');
     }
   }
 
@@ -151,7 +161,7 @@ class UnitCategoryModel extends UnitCategory {
       case 'Ounce':
         return kg / 0.0283495;
       default:
-        return kg;
+        throw ArgumentError('Unsupported weight unit: $unit');
     }
   }
 }

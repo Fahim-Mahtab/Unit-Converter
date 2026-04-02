@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class UnitDropdown extends StatelessWidget {
   const UnitDropdown({
     super.key,
@@ -29,10 +30,10 @@ class UnitDropdown extends StatelessWidget {
       items: units
           .map(
             (unit) => DropdownMenuItem<String>(
-          value: unit,
-          child: Text(unit, overflow: TextOverflow.ellipsis),
-        ),
-      )
+              value: unit,
+              child: Text(unit, overflow: TextOverflow.ellipsis),
+            ),
+          )
           .toList(),
       onChanged: onChanged,
     );

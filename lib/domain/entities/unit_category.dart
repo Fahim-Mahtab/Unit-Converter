@@ -5,7 +5,7 @@ class UnitCategory {
   final IconData iconData;
   final List<String> units;
 
-   const UnitCategory({
+  const UnitCategory({
     required this.name,
     required this.iconData,
     required this.units,

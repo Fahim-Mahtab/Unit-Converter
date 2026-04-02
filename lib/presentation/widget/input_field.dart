@@ -41,13 +41,13 @@ class _InputFieldState extends State<InputField> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         suffixIcon: _controller.text.isNotEmpty
             ? IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () {
-            _controller.clear();
-            context.read<ConverterProvider>().updateInput('');
-            setState(() {});
-          },
-        )
+                icon: const Icon(Icons.clear),
+                onPressed: () {
+                  _controller.clear();
+                  context.read<ConverterProvider>().updateInput('');
+                  setState(() {});
+                },
+              )
             : null,
       ),
       onChanged: (value) {
